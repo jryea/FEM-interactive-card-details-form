@@ -1,14 +1,21 @@
 import React from 'react';
-import { useState } from 'react';
+import Button from '../Button';
 
 import styled from 'styled-components/macro';
 
-function Form() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [date, setDate] = useState('');
-  const [CVC, setCVC] = useState('');
-
+function Form({
+  name = '',
+  handleNameChange,
+  number = '',
+  handleNumberChange,
+  month,
+  handleMonthChange,
+  year,
+  handleYearChange,
+  cvc,
+  handleCvcChange,
+  handleSubmit,
+}) {
   return (
     <Wrapper>
       <FormWrapper>
@@ -18,50 +25,111 @@ function Form() {
           id='name-input'
           placeholder='e.g. Jane Appleseed'
           value={name}
-          onChange={(event) => setName(event.target.value)}
+          onChange={handleNameChange}
         />
-        <Label htmlFor='name-input'>Card Number</Label>
+        <Label htmlFor='number-input'>Card Number</Label>
         <TextInput
-          type='email'
-          id='email-input'
+          type='text'
+          id='number-input'
           placeholder='e.g. 1234 5678 9123 0000'
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          value={number}
+          onChange={handleNumberChange}
         />
+        <Column2>
+          <Label htmlFor='month-input'>Exp. date (mm/yy)</Label>
+          <DateInput
+            type='text'
+            id='month-input'
+            placeholder='MM'
+            value={month}
+            onChange={handleMonthChange}
+          />
+          <DateInput
+            type='text'
+            id='year-input'
+            placeholder='YY'
+            value={year}
+            onChange={handleYearChange}
+          />
+        </Column2>
+        <Column2>
+          <Label htmlFor='cvc-input'>cvc</Label>
+          <CVCInput
+            type='text'
+            id='cvc-input'
+            placeholder='MM'
+            value={cvc}
+            onChange={handleCvcChange}
+          />
+        </Column2>
       </FormWrapper>
-      <SubmitButton>Confirm</SubmitButton>
+      <Button handleClick={handleSubmit}>Confirm</Button>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.main`
   padding: 24px;
-  margin-top: 80px;
+  margin-top: 60px;
 `;
 
 const FormWrapper = styled.form``;
 
 const Label = styled.label`
   display: block;
+  color: hsla(278, 68%, 11%, 1);
   font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
   margin-bottom: 8px;
   text-transform: uppercase;
 `;
 
-const SubmitButton = styled.label`
-  display: block;
-  text-align: center;
-  width: 100%;
-  height: 53px;
-  background: hsla(278, 68%, 11%, 1);
-  color: white;
-  margin-top: 28px;
-  padding: 13px;
-  border-radius: 8px;
-`;
-
 const TextInput = styled.input`
   width: 100%;
+  padding: 11px 16px;
+  font-size: 18px;
+  color: hsla(278, 68%, 11%, 1);
+  margin-bottom: 20px;
+  border: 1px solid hsla(278, 3%, 87%, 1);
+  border-radius: 8px;
+  &::placeholder {
+    color: inherit;
+    opacity: 25%;
+  }
+`;
+
+const Column2 = styled.section`
+  display: inline-block;
+  width: 50%;
+`;
+
+const DateInput = styled.input`
+  width: 45%;
+  padding: 11px 16px;
+  font-size: 18px;
+  color: hsla(278, 68%, 11%, 1);
+  margin-right: 5px;
+  border: 1px solid hsla(278, 3%, 87%, 1);
+  border-radius: 8px;
+  &::placeholder {
+    color: inherit;
+    opacity: 25%;
+  }
+`;
+
+const CVCInput = styled.input`
+  width: 95%;
+  padding: 11px 16px;
+  font-size: 18px;
+  color: hsla(278, 68%, 11%, 1);
+  margin-right: 5px;
+  border: 1px solid hsla(278, 3%, 87%, 1);
+  border-radius: 8px;
+  &::placeholder {
+    color: inherit;
+    opacity: 25%;
+  }
 `;
 
 export default Form;

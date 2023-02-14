@@ -1,38 +1,36 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import backgroundImage from '../../assets/bg-main-mobile.png';
-import cardBackImage from '../../assets/bg-card-back.png';
-import cardFrontImage from '../../assets/bg-card-front.png';
 
-function Header() {
+import CardFront from '../CardFront';
+import CardBack from '../CardBack';
+
+function Header({ number, name, month, year, cvc }) {
   return (
-    <CardHeader>
-      <CardBack src={cardBackImage} />
-      <CardFront src={cardFrontImage} />
-    </CardHeader>
+    <Wrapper>
+      <CardGroup>
+        <CardBack />
+        <CardFront number={number} name={name} month={month} year={year} />
+      </CardGroup>
+    </Wrapper>
   );
 }
 
-const CardHeader = styled.header`
+const Wrapper = styled.header`
   height: 240px;
   width: 100%;
-  position: relative;
   background-image: url(${backgroundImage});
   background-size: cover;
 `;
 
-const CardBack = styled.img`
-  width: 286px;
-  position: absolute;
-  right: 16px;
-  top: 32px;
-`;
-
-const CardFront = styled.img`
-  width: 286px;
-  position: absolute;
-  left: 16px;
-  bottom: -44px;
+const CardGroup = styled.div`
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 342px;
+  top: 0px;
+  box-shadow: 0px 60px 70px hsla(278, 68%, 11%, 0.25);
 `;
 
 export default Header;

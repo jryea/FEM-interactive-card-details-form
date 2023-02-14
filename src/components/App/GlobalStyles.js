@@ -22,6 +22,10 @@ const GlobalStyles = createGlobalStyle`
 */
 html,
 body {
+
+
+
+
   height: 100%;
 }
 /*
@@ -73,12 +77,20 @@ h6 {
   isolation: isolate;
 }
 
-//Global Styles
+//GLOBAL STYLES
 
 body {
   font-family: 'Space Grotesk', sans-serif;
   background-color:#F2F2F2;
 }
+
+// VARIABLES
+
+--light-violet: hsl(270deg, 3%, 87%);
+--dark-violet: hsl(279deg, 6%, 55%);
+--very-dark-violet: hsl(278deg, 68%, 11%);
+--red: hsl(0deg,100%,66%);
+--gradient: linear-gradient(to bottom, hsl(249deg, 99%, 64%), hsl(278deg, 94%, 30%));
 
 `;
 
